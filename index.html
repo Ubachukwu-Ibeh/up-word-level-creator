@@ -8,11 +8,11 @@
   </head>
 
   <body>
-    <div class="main">
-      <div class="output-main" id="om">
-        <p class="output" id="output"></p>
+    <div class="slide" id="slide">
+      <p class="output" id="output"></p>
         <p class="close" id="close">Close</p>
-      </div>
+    </div>
+    <div class="main">
       <div class="word-grid" id="word-grid"></div>
       <div class="items">
         <div class="wood" id="wood"></div>
@@ -22,10 +22,14 @@
         <div class="ice" id="ice"></div>
       </div>
       <div class="opt">
-        <p class="generate" id="gen">Generate</p>
+        <p class="generate" id="gen">Add</p>
+        <p class="clear"style="background-color: rgb(178, 23, 255);" id="del">Undo</p>
         <a href="" class="clear" id="gen">Clear</a>
+        <p class="clear" style="background-color: rgb(116, 188, 255);" id="view">View</p>
       </div>
     </div>
   </body>
-  <script src="./javascript/levelCreator.js"></script>
+  <script src="./javascript/levelCreator.js" type="module"></script>
+  <script src="./javascript/allLevels.js" type="module"></script>
+  <script src="./javascript/gameObject.js" type="module"></script>
 </html>

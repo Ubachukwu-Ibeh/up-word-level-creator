@@ -1,5 +1,5 @@
 "use strict";
-const oM = document.getElementById("om");
+import { allLevels } from "./allLevels.js";
 const output = document.getElementById("output");
 const closeRes = document.getElementById("close");
 const wood = document.getElementById("wood");
@@ -8,8 +8,15 @@ const metal = document.getElementById("metal");
 const amethyst = document.getElementById("amethyst");
 const ice = document.getElementById("ice");
 const gen = document.getElementById("gen");
+const slide = document.getElementById('slide');
+const view = document.getElementById('view');
+const del = document.getElementById('del');
+
+!localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
 const matArr = ["wood", "stone", "metal", "amethyst", "ice"];
+
 const matName = [wood, stone, metal, amethyst, ice];
+
 for (let i = 0; i < matName.length; i++) {
   matName[i].addEventListener("click", () => {
     SELECT([matArr[i], matName[i]]);
@@ -18,7 +25,7 @@ for (let i = 0; i < matName.length; i++) {
 const finalItem = [];
 const active = [];
 const selArr = [];
-const SELECT = (e) => {
+const SELECT = e => {
   if (e[1].classList.contains("is-open")) {
     active[0].style.border = "3px solid white";
     active[0].classList.toggle("is-open");
@@ -73,29 +80,54 @@ const SET_STAGE = () => {
   }
 };
 SET_STAGE();
-let bgString;
+
 let final = [];
 const GENERATE = () => {
+  const storage = JSON.parse(localStorage.getItem('levels'));
   for (let i = 0; i < finalItem.length; i++) {
     final.push(
       `[${[`'${finalItem[i].id}'`, `'${finalItem[i].classList[1]}'`]}]`
     );
   }
-  oM.style.display = "flex";
-  output.innerHTML = `[${final}] and BG = linear-gradient(${`rgb(${Math.floor(
-    Math.random() * 256
-  )}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
-    Math.random() * 256
-  )})`}, ${`rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-    Math.random() * 256
-  )}, ${Math.floor(Math.random() * 256)})`})`;
+  storage.push({
+    animPlayed: false,
+    passed: false,
+    level: `${allLevels.length + 1}`,
+    stars: 0,
+    backgroundGradient:`linear-gradient(${`rgb(${Math.floor(
+      Math.random() * 256
+    )}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
+      Math.random() * 256
+    )})`}, ${`rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+      Math.random() * 256
+    )}, ${Math.floor(Math.random() * 256)})`})`,
+    layout: `[${final}]`,
+    starMargins: `${[Math.floor(Math.random() * 20 + 30), Math.floor(Math.random() * 20 + 30)]}`,
+    difficulty: (() =>{
+      let difficulty = 0.05;
+      final.forEach(e => {
+        (e[1] === 'amethyst' || e[1] === 'metal') && (difficulty -= 0.001);
+      })
+      return difficulty.toFixed(2);
+    })()
+  })
+  localStorage.setItem('levels', JSON.stringify(storage));
   final = [];
 };
 gen.addEventListener("click", () => {
   GENERATE();
 });
+del.addEventListener("click", () => {
+  const storage = JSON.parse(localStorage.getItem('levels'));
+  storage.pop();
+  localStorage.setItem('levels', JSON.stringify(storage));
+});
+view.addEventListener("click", () => {
+  slide.style.display = 'flex';
+  output.innerText = localStorage.levels;
+});
 
 closeRes.addEventListener("click", () => {
-  oM.style.display = "none";
-  output.innerHTML = "";
+  slide.style.display = "none";
+  output.innerText = "";
 });
