@@ -10,7 +10,7 @@ const gen = document.getElementById("gen");
 const slide = document.getElementById('slide');
 const view = document.getElementById('view');
 const del = document.getElementById('del');
-
+const copy = document.getElementById('copy');
 // !localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
 const matArr = ["wood", "stone", "metal", "amethyst", "ice"];
 
@@ -24,6 +24,7 @@ for (let i = 0; i < matName.length; i++) {
 const finalItem = [];
 const active = [];
 const selArr = [];
+
 const SELECT = e => {
   if (e[1].classList.contains("is-open")) {
     active[0].style.border = "3px solid white";
@@ -81,7 +82,9 @@ const SET_STAGE = () => {
 SET_STAGE();
 
 let final = [];
+
 const GENERATE = () => {
+  if(!finalItem.length) return;
   const storage = JSON.parse(localStorage.getItem('levels'));
   for (let i = 0; i < finalItem.length; i++) {
     final.push(
@@ -91,7 +94,7 @@ const GENERATE = () => {
   storage.push({
     animPlayed: false,
     passed: false,
-    level: `${allLevels.length + 1}`,
+    level: `${storage.length + 1}`,
     stars: 0,
     backgroundGradient:`linear-gradient(${`rgb(${Math.floor(
       Math.random() * 256
@@ -113,17 +116,25 @@ const GENERATE = () => {
   localStorage.setItem('levels', JSON.stringify(storage));
   final = [];
 };
+
 gen.addEventListener("click", () => {
   GENERATE();
 });
+
 del.addEventListener("click", () => {
   const storage = JSON.parse(localStorage.getItem('levels'));
-  storage.pop();
+  storage.length > 140 && storage.pop();
   localStorage.setItem('levels', JSON.stringify(storage));
 });
+
 view.addEventListener("click", () => {
   slide.style.display = 'flex';
-  output.innerText = localStorage.levels;
+  output.innerText = localStorage.getItem('levels');
+});
+
+copy.addEventListener("click", () => {
+  output.select();
+  document.execCommand('copy');
 });
 
 closeRes.addEventListener("click", () => {

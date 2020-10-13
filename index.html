@@ -9,8 +9,11 @@
 
   <body>
     <div class="slide" id="slide">
-      <p class="output" id="output"></p>
+      <textarea class="output" id="output"></textarea>
+        <div class="close"style="background-color: rgb(116, 188, 255);">
+        <p class="close" style="background-color: rgb(76, 208, 0); margin: auto;" id="copy">Copy</p>
         <p class="close" id="close">Close</p>
+        </div>
     </div>
     <div class="main">
       <div class="word-grid" id="word-grid"></div>
@@ -22,12 +25,13 @@
         <div class="ice" id="ice"></div>
       </div>
       <div class="opt">
-        <p class="generate" id="gen">Add</p>
+        <p class="clear" style="background-color: rgb(76, 208, 0);" id="gen">Add</p>
         <p class="clear"style="background-color: rgb(178, 23, 255);" id="del">Undo</p>
         <a href="" class="clear" id="gen">Clear</a>
         <p class="clear" style="background-color: rgb(116, 188, 255);" id="view">View</p>
       </div>
     </div>
   </body>
+
   <script src="./javascript/levelCreator.js" type="module"></script>
 </html>
