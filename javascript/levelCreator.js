@@ -1,5 +1,4 @@
 "use strict";
-import { allLevels } from "./allLevels.js";
 const output = document.getElementById("output");
 const closeRes = document.getElementById("close");
 const wood = document.getElementById("wood");
@@ -12,7 +11,7 @@ const slide = document.getElementById('slide');
 const view = document.getElementById('view');
 const del = document.getElementById('del');
 
-!localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
+// !localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
 const matArr = ["wood", "stone", "metal", "amethyst", "ice"];
 
 const matName = [wood, stone, metal, amethyst, ice];
