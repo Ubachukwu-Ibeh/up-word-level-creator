@@ -1,4 +1,5 @@
 "use strict";
+import { allLevels } from './allLevels.js';
 const output = document.getElementById("output");
 const closeRes = document.getElementById("close");
 const wood = document.getElementById("wood");
@@ -11,7 +12,8 @@ const slide = document.getElementById('slide');
 const view = document.getElementById('view');
 const del = document.getElementById('del');
 const copy = document.getElementById('copy');
-// !localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
+localStorage.removeItem('levels');
+!localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
 const matArr = ["wood", "stone", "metal", "amethyst", "ice"];
 
 const matName = [wood, stone, metal, amethyst, ice];
@@ -106,11 +108,37 @@ const GENERATE = () => {
     layout: `[${final}]`,
     starMargins: `${[Math.floor(Math.random() * 20 + 30), Math.floor(Math.random() * 20 + 30)]}`,
     difficulty: (() =>{
-      let difficulty = 0.05;
       final.forEach(e => {
-        (e[1] === 'amethyst' || e[1] === 'metal') && (difficulty -= 0.001);
+
+        let difficulty;
+
+        const arr = [
+          e.filter(e => e[1] === 'ice').length,
+          e.filter(e => e[1] === 'wood').length,
+          e.filter(e => e[1] === 'stone').length,
+          e.filter(e => e[1] === 'amethyst').length,
+          e.filter(e => e[1] === 'metal').length
+        ];
+
+        switch (arr.indexOf(Math.max(...arr))) {
+          case 0:
+            difficulty = 0.05;
+            break;
+          case 1:
+            difficulty = 0.04;
+            break;
+          case 2:
+            difficulty = 0.03;
+            break;
+          case 3:
+            difficulty = 0.02;
+            break;
+          case 4:
+            difficulty = 0.01;
+            break;
+        }
       })
-      return difficulty.toFixed(2);
+      return difficulty;
     })()
   })
   localStorage.setItem('levels', JSON.stringify(storage));
