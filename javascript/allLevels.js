@@ -408,13 +408,4 @@ export const allLevels = [
 
 ,
 {"animPlayed":false,"passed":false,"level":137,"stars":0,"backgroundGradient":"linear-gradient(rgb(98, 250, 252), rgb(62, 139, 214))","layout":[["wD20","stone"],["wD21","stone"],["wD22","stone"],["wD23","stone"],["wD24","stone"],["wD19","stone"],["wD18","stone"],["wD17","stone"],["wD15","stone"],["wD16","stone"],["wD10","stone"],["wD11","stone"],["wD12","stone"],["wD13","stone"],["wD14","stone"],["wD9","stone"],["wD8","stone"],["wD7","stone"],["wD6","stone"],["wD5","stone"],["wD0","stone"],["wD1","stone"],["wD2","stone"],["wD3","stone"],["wD4","stone"]],"difficulty":"0.03","starMargins":[44,33]}
-
-,
-{"animPlayed":false,"passed":false,"level":138,"stars":0,"backgroundGradient":"linear-gradient(rgb(118, 242, 107), rgb(110, 180, 4))","layout":[["wD0","amethyst"],["wD1","amethyst"],["wD2","metal"],["wD3","amethyst"],["wD4","amethyst"],["wD9","amethyst"],["wD8","metal"],["wD7","metal"],["wD6","metal"],["wD5","amethyst"],["wD10","metal"],["wD11","amethyst"],["wD12","amethyst"],["wD13","amethyst"],["wD14","metal"],["wD19","amethyst"],["wD18","metal"],["wD17","metal"],["wD16","metal"],["wD15","amethyst"],["wD20","amethyst"],["wD21","amethyst"],["wD22","metal"],["wD23","amethyst"],["wD24","amethyst"]],"difficulty":"0.02","starMargins":[46,39]}
-
-,
-{"animPlayed":false,"passed":false,"level":139,"stars":0,"backgroundGradient":"linear-gradient(rgb(108, 190, 70), rgb(212, 123, 100))","layout":[["wD0","amethyst"],["wD5","stone"],["wD10","stone"],["wD15","stone"],["wD20","amethyst"],["wD21","stone"],["wD22","stone"],["wD24","amethyst"],["wD19","stone"],["wD14","stone"],["wD9","stone"],["wD4","amethyst"],["wD3","stone"],["wD2","stone"],["wD1","stone"],["wD16","metal"],["wD11","wood"],["wD6","metal"],["wD7","wood"],["wD8","metal"],["wD13","wood"],["wD18","metal"],["wD17","wood"],["wD12","ice"],["wD23","stone"]],"difficulty":"0.03","starMargins":[49,35]}
-
-,
-{"animPlayed":false,"passed":false,"level":140,"stars":0,"backgroundGradient":"linear-gradient(rgb(54, 192, 107), rgb(171, 119, 107))","layout":[["wD0","metal"],["wD1","metal"],["wD2","metal"],["wD3","metal"],["wD4","metal"],["wD5","metal"],["wD6","metal"],["wD7","metal"],["wD8","metal"],["wD9","metal"],["wD10","metal"],["wD11","metal"],["wD12","metal"],["wD13","metal"],["wD14","metal"],["wD15","metal"],["wD16","metal"],["wD17","metal"],["wD18","metal"],["wD19","metal"],["wD20","metal"],["wD21","metal"],["wD22","metal"],["wD23","metal"],["wD24","metal"]],"difficulty":"0.01","starMargins":[35,30]}
 ];

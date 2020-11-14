@@ -12,7 +12,6 @@ const slide = document.getElementById('slide');
 const view = document.getElementById('view');
 const del = document.getElementById('del');
 const copy = document.getElementById('copy');
-localStorage.removeItem('levels');
 !localStorage.getItem('levels') && localStorage.setItem('levels', JSON.stringify(allLevels));
 const matArr = ["wood", "stone", "metal", "amethyst", "ice"];
 
@@ -90,14 +89,16 @@ const GENERATE = () => {
   const storage = JSON.parse(localStorage.getItem('levels'));
   for (let i = 0; i < finalItem.length; i++) {
     final.push(
-      `[${[`'${finalItem[i].id}'`, `'${finalItem[i].classList[1]}'`]}]`
+      [finalItem[i].id, finalItem[i].classList[1]]
     );
   }
+  
   storage.push({
     animPlayed: false,
     passed: false,
     level: `${storage.length + 1}`,
     stars: 0,
+
     backgroundGradient:`linear-gradient(${`rgb(${Math.floor(
       Math.random() * 256
     )}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
@@ -105,19 +106,19 @@ const GENERATE = () => {
     )})`}, ${`rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
       Math.random() * 256
     )}, ${Math.floor(Math.random() * 256)})`})`,
-    layout: `[${final}]`,
-    starMargins: `${[Math.floor(Math.random() * 20 + 30), Math.floor(Math.random() * 20 + 30)]}`,
-    difficulty: (() =>{
-      final.forEach(e => {
 
-        let difficulty;
+    layout: final,
+    starMargins: [Math.floor(Math.random() * 20 + 30), Math.floor(Math.random() * 20 + 30)],
+
+    difficulty: (() =>{
+      let difficulty;
 
         const arr = [
-          e.filter(e => e[1] === 'ice').length,
-          e.filter(e => e[1] === 'wood').length,
-          e.filter(e => e[1] === 'stone').length,
-          e.filter(e => e[1] === 'amethyst').length,
-          e.filter(e => e[1] === 'metal').length
+          final.filter(e => e[1] === 'ice').length,
+          final.filter(e => e[1] === 'wood').length,
+          final.filter(e => e[1] === 'stone').length,
+          final.filter(e => e[1] === 'amethyst').length,
+          final.filter(e => e[1] === 'metal').length
         ];
 
         switch (arr.indexOf(Math.max(...arr))) {
@@ -137,10 +138,9 @@ const GENERATE = () => {
             difficulty = 0.01;
             break;
         }
-      })
       return difficulty;
     })()
-  })
+  })  
   localStorage.setItem('levels', JSON.stringify(storage));
   final = [];
 };
@@ -151,7 +151,7 @@ gen.addEventListener("click", () => {
 
 del.addEventListener("click", () => {
   const storage = JSON.parse(localStorage.getItem('levels'));
-  storage.length > 140 && storage.pop();
+  storage.pop();
   localStorage.setItem('levels', JSON.stringify(storage));
 });
 
